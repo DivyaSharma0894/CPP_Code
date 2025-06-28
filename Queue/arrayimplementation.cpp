@@ -1,5 +1,5 @@
 #include<iostream>
-using namspace std;
+using namespace std;
 class queue{
     public:
     int *arr;
@@ -9,7 +9,7 @@ class queue{
     queue(int val){
         capacity=val;
         arr=new int[capacity];
-        front=-1;
+        front=0;
         rear=-1;
     }
     void enqueue(int x){
@@ -17,10 +17,38 @@ class queue{
             cout<<"overflow"<<endl;
         }
         else{
-            arr[++front]=x;
+            arr[++rear]=x;
         }
     }
-}
-int main(){
+    void dequeue(){
+        if(rear==-1){
+            cout<<"empty"<<endl;
 
+        }
+        else{
+            front++;
+        }
+
+    }
+    void display(){
+        if(front>rear){
+            cout<<"empty"<<endl;
+
+        }
+        else{
+            for(int i=rear;i<=rear;i++){
+                cout<<arr[i]<<" ";
+            }
+            cout<<endl;
+        }
+    }
+};
+int main(){
+ queue Q(20);
+ Q.enqueue(10);
+ Q.enqueue(20);
+ //Q.dequeue();
+ cout<<Q.rear<<" ";
+ cout<<Q.front<<" "<<endl;
+ Q.display();
 }
