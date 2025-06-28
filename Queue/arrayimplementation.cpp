@@ -1,54 +1,63 @@
 #include<iostream>
 using namespace std;
-class queue{
-    public:
-    int *arr;
+
+class Queue {
+public:
+    int* arr;
     int capacity;
     int front;
     int rear;
-    queue(int val){
-        capacity=val;
-        arr=new int[capacity];
-        front=0;
-        rear=-1;
-    }
-    void enqueue(int x){
-        if(rear==capacity-1){
-            cout<<"overflow"<<endl;
-        }
-        else{
-            arr[++rear]=x;
-        }
-    }
-    void dequeue(){
-        if(rear==-1){
-            cout<<"empty"<<endl;
 
+    Queue(int val) {
+        capacity = val;
+        arr = new int[capacity];
+        front = 0;
+        rear = -1;
+    }
+
+    void enqueue(int x) {
+        if (rear == capacity - 1) {
+            cout << "Overflow 😵" << endl;
+        } else {
+            arr[++rear] = x;
+            cout << x << " enqueued ✅" << endl;
         }
-        else{
+    }
+
+    void dequeue() {
+        if (front > rear) {
+            cout << "Queue is empty 😶" << endl;
+        } else {
+            cout << arr[front] << " dequeued ❌" << endl;
             front++;
         }
-
     }
-    void display(){
-        if(front>rear){
-            cout<<"empty"<<endl;
 
-        }
-        else{
-            for(int i=rear;i<=rear;i++){
-                cout<<arr[i]<<" ";
+    void display() {
+        if (front > rear) {
+            cout << "Queue is empty 😢" << endl;
+        } else {
+            cout << "Queue elements: ";
+            for (int i = front; i <= rear; i++) {
+                cout << arr[i] << " ";
             }
-            cout<<endl;
+            cout << endl;
         }
     }
 };
-int main(){
- queue Q(20);
- Q.enqueue(10);
- Q.enqueue(20);
- //Q.dequeue();
- cout<<Q.rear<<" ";
- cout<<Q.front<<" "<<endl;
- Q.display();
+
+int main() {
+    Queue Q(5);
+    Q.enqueue(10);
+    Q.enqueue(20);
+    Q.enqueue(30);
+    Q.display();
+
+    Q.dequeue();
+    Q.display();
+
+    cout << "Front index: " << Q.front << endl;
+    cout << "Rear index: " << Q.rear << endl;
+
+    return 0;
 }
